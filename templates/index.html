@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistente Virtual Natucen</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box">
+            <div class="bot-message">
+                🌿 ¡Hola! Soy <strong>Natubot</strong>, tu asistente virtual de Natucen.<br><br>
+                ¿Qué deseas mejorar hoy?<br><br>
+                Escribe el número de tu opción:<br>
+                1️⃣ Energía y vitalidad<br>
+                2️⃣ Digestión<br>
+                3️⃣ Estrés y sueño<br>
+                4️⃣ Piel, cabello y colágeno<br>
+                5️⃣ Dolor de cabeza<br>
+                6️⃣ Inmunidad
+            </div>
+        </div>
+        <form id="chat-form">
+            <input type="text" id="user-input" placeholder="Escribe aquí un número del 1 al 6..." autocomplete="off">
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('chat-form');
+        const input = document.getElementById('user-input');
+        const chatBox = document.getElementById('chat-box');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const message = input.value.trim();
+            if (!message) return;
+
+            chatBox.innerHTML += `<div class="user-message">${message}</div>`;
+            input.value = "";
+
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ mensaje: message })
+            });
+
+            const data = await response.json();
+            chatBox.innerHTML += `<div class="bot-message">${data.respuesta.replace(/\n/g, '<br>')}</div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+        });
+    </script>
+</body>
+</html>
