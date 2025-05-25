@@ -1,38 +1,44 @@
-from flask import Flask, request, jsonify, render_template
-from flask_cors import CORS
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
-CORS(app)
-
-@app.route('/')
-def index():
-    return render_template('index.html')
 
 @app.route('/chat', methods=['POST'])
 def chat():
+    # Obtener el mensaje del cuerpo JSON de la solicitud
     data = request.get_json()
-    mensaje = data.get("mensaje", "").strip()
+    if not data or 'message' not in data:
+        return jsonify({'error': 'Solicitud incorrecta, falta el campo "message"'}), 400
 
+    user_input = str(data.get('message', '')).strip()
     respuesta = ""
 
-    if mensaje == "1":
-        respuesta = "🔋 Recomendación para Energía y vitalidad:<br><strong>Nutralie Energy Complex</strong><br>Con ginseng, guaraná, L-carnitina y vitaminas del grupo B. Ayuda a reducir el cansancio y mejora la concentración."
-    elif mensaje == "2":
-        respuesta = "🦠 Recomendación para Digestión:<br><strong>Nutralie Digestive Enzymes</strong><br>Contiene 7 enzimas digestivas que mejoran la absorción de nutrientes y reducen gases."
-    elif mensaje == "3":
-        respuesta = "🛌 Recomendación para Estrés y sueño:<br><strong>Nutralie Ashwagandha Complex</strong><br>Reduce el estrés y mejora el descanso gracias a la melisa y la vitamina B6."
-    elif mensaje == "4":
-        respuesta = "💅 Recomendación para Piel, cabello y colágeno:<br><strong>Nutralie Collagen Complex</strong><br>Con colágeno marino, ácido hialurónico, vitamina C y zinc. Mejora la elasticidad de la piel y fortalece uñas y cabello."
-    elif mensaje == "5":
-        respuesta = "💊 Recomendación para Dolor de cabeza:<br><strong>Nutralie Ashwagandha Complex</strong> y <strong>Nutralie Magnesium</strong><br>Combinación ideal para relajar el sistema nervioso y reducir la fatiga mental."
-    elif mensaje == "6":
-        respuesta = "🛡️ Recomendación para Inmunidad:<br><strong>Nutralie Immune Complex</strong><br>Con vitamina C, D3, zinc y equinácea para reforzar defensas y recuperación."
+    if user_input == '1':
+        respuesta = ("Nutralie Energy Complex: Suplemento con ginseng, guaraná, L-carnitina y vitaminas B. "
+                     "Ayuda a reducir el cansancio y mejora la concentración. "
+                     "Ideal para quienes buscan mantener alto rendimiento físico y mental.")
+    elif user_input == '2':
+        respuesta = ("Nutralie Digestive Biprotics Complex: Mejora la digestión, alivia hinchazón e indigestión. "
+                     "Con probióticos, enzimas, cúrcuma y aloe vera. "
+                     "Apoya la salud intestinal y absorción de nutrientes. "
+                     "Para personas con digestiones pesadas.")
+    elif user_input == '3':
+        respuesta = ("Nutralie Ashwagandha Complex: Con ashwagandha KSM-66, rhodiola rosea y vitaminas B6-B12. "
+                     "Reduce el estrés, mejora el sueño y aporta energía. "
+                     "Propiedades adaptógenas que ayudan al equilibrio emocional.")
+    elif user_input == '4':
+        respuesta = ("Nutralie Collagen Complex: Contiene colágeno hidrolizado, ácido hialurónico, biotina, zinc y vitaminas A, C, D y B12. "
+                     "Mejora elasticidad de la piel, fortalece cabello y uñas, y apoya articulaciones.")
+    elif user_input == '5':
+        respuesta = ("Nutralie Magnesium Complex: Magnesio bisglicinato y citrato + vitaminas B5, B6 y C. "
+                     "Reduce el cansancio, favorece músculos y huesos sanos, mejora el sistema nervioso y energía.")
+    elif user_input == '6':
+        respuesta = ("Nutralie Immunity Booster Complex: Refuerza el sistema inmune con vitaminas C, B6, B9, B12, minerales "
+                     "(zinc, hierro, selenio, cobre) y extractos de reishi, propóleo y equinácea.")
     else:
-        respuesta = "❌ Por favor, escribe un número del 1 al 6."
+        respuesta = "Lo siento, no he entendido tu elección. Por favor, elige un número del 1 al 6."
 
-    return jsonify({"respuesta": respuesta})
+    return jsonify({'response': respuesta})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=10000)
+    app.run(debug=True)
 
-# Versión corregida para Render
