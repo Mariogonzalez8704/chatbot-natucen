@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Asistente Virtual Natucen</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
@@ -23,7 +23,7 @@
     </div>
 
     <form id="chat-form">
-      <input type="text" id="user-input" placeholder="Escribe aquí un número del 1 al 6..." autocomplete="off">
+      <input type="text" id="user-input" placeholder="Escribe aquí un número del 1 al 6..." autocomplete="off" />
       <button type="submit">Enviar</button>
     </form>
   </div>
@@ -50,21 +50,6 @@
       const data = await response.json();
 
       chatBox.innerHTML += `<div class="bot-message">${data.respuesta.replace(/\n/g, '<br>')}</div>`;
-
-      // Mostrar botón de WhatsApp si la opción es válida
-      if (["1", "2", "3", "4", "5", "6"].includes(message)) {
-        chatBox.innerHTML += `
-          <div class="bot-message">
-            ¿Deseas hablar directamente con un asesor?<br>
-            <a href="https://wa.me/34642490986?text=Hola%20Natubot%2C%20quiero%20una%20recomendaci%C3%B3n%20de%20producto%20natural" target="_blank">
-              <button style="margin-top: 10px; padding: 10px 15px; background-color: #25D366; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                💬 Hablar por WhatsApp
-              </button>
-            </a>
-          </div>
-        `;
-      }
-
       chatBox.scrollTop = chatBox.scrollHeight;
     });
   </script>
