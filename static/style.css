@@ -1,82 +1,89 @@
-/* style.css */
+/* style.css - Diseño Natural para Natucen */
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f2f7f5;
-    margin: 0;
-    padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #eafaf1;
+  margin: 0;
+  padding: 0;
 }
 
 .chat-container {
-    width: 100%;
-    max-width: 480px;
-    height: 90vh;
-    margin: 30px auto;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    border: 2px solid #4caf50;
+  width: 100%;
+  max-width: 480px;
+  height: 90vh;
+  margin: 40px auto;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 2px solid #c3eecb;
 }
 
 .chat-box {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-    background-color: #f9f9f9;
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #f9fff9;
 }
 
-.bot-message, .user-message {
-    padding: 12px 16px;
-    margin: 10px 0;
-    border-radius: 8px;
-    max-width: 80%;
-    line-height: 1.5;
-    white-space: pre-line;
+.bot-message,
+.user-message {
+  padding: 14px 18px;
+  margin: 10px 0;
+  border-radius: 12px;
+  max-width: 85%;
+  line-height: 1.6;
+  white-space: pre-line;
 }
 
 .bot-message {
-    background-color: #e6ffe6;
-    align-self: flex-start;
-    color: #2b572a;
+  background-color: #d4f5dc;
+  align-self: flex-start;
+  color: #1f5135;
 }
 
 .user-message {
-    background-color: #dce7ff;
-    align-self: flex-end;
-    text-align: right;
-    color: #1a237e;
+  background-color: #dcf1ff;
+  align-self: flex-end;
+  text-align: right;
+  color: #195b80;
 }
 
 form {
-    display: flex;
-    padding: 12px;
-    background-color: #fff;
-    border-top: 1px solid #ccc;
+  display: flex;
+  padding: 12px;
+  background-color: #ffffff;
+  border-top: 1px solid #d6eedd;
 }
 
 input[type="text"] {
-    flex: 1;
-    padding: 10px 14px;
-    font-size: 16px;
-    border-radius: 6px;
-    border: 1px solid #bbb;
-    outline: none;
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #a0d9b4;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+  border-color: #51b17f;
 }
 
 button {
-    padding: 10px 18px;
-    margin-left: 8px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s ease;
+  padding: 12px 18px;
+  margin-left: 10px;
+  background-color: #51b17f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 button:hover {
-    background-color: #3f9743;
+  background-color: #41996a;
 }
